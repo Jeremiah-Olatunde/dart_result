@@ -37,3 +37,15 @@ Result<T, F> mapErr<T, F, E>(Result<T, E> result, F Function(E) f) {
     Err(error: E error) => Err(f(error)),
   };
 }
+
+Result<T, E> inspect<T, E>(Result<T, E> result, Function(T) f) {
+  switch (result) {
+    case Ok(value: T value):
+      f(value);
+      Ok(value);
+    case Err(error: E error):
+      Err(error);
+  }
+
+  return result;
+}
