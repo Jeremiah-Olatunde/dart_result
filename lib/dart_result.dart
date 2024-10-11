@@ -72,3 +72,10 @@ Result<T, E> flatten<T, E>(Result<Result<T, E>, E> result) {
 Result<U, E> andThen<T, U, E>(Result<T, E> result, Result<U, E> Function(T) f) {
   return flatten(map(result, f));
 }
+
+bool isOk<T, E>(Result<T, E> result) {
+  return switch (result) {
+    Ok(value: _) => true,
+    Err(error: _) => false,
+  };
+}
