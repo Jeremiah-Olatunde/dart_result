@@ -9,3 +9,10 @@ class Err<T, E> implements Result<T, E> {
   final E error;
   const Err(this.error);
 }
+
+Result<U, E> map<T, U, E>(Result<T, E> result, U Function(T) f) {
+  return switch (result) {
+    Ok(value: T value) => Ok(f(value)),
+    Err(error: E error) => Err(error)
+  };
+}
