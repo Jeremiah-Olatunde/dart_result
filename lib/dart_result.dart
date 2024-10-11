@@ -79,3 +79,10 @@ bool isOk<T, E>(Result<T, E> result) {
     Err(error: _) => false,
   };
 }
+
+bool isErr<T, E>(Result<T, E> result) {
+  return switch (result) {
+    Ok(value: _) => false,
+    Err(error: _) => true,
+  };
+}
