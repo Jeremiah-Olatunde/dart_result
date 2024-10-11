@@ -49,3 +49,15 @@ Result<T, E> inspect<T, E>(Result<T, E> result, Function(T) f) {
 
   return result;
 }
+
+Result<T, E> inspectErr<T, E>(Result<T, E> result, Function(E) f) {
+  switch (result) {
+    case Ok(value: T value):
+      Ok(value);
+    case Err(error: E error):
+      f(error);
+      Err(error);
+  }
+
+  return result;
+}
