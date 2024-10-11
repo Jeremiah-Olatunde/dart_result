@@ -68,3 +68,7 @@ Result<T, E> flatten<T, E>(Result<Result<T, E>, E> result) {
     Err(error: E error) => Err(error),
   };
 }
+
+Result<U, E> andThen<T, U, E>(Result<T, E> result, Result<U, E> Function(T) f) {
+  return flatten(map(result, f));
+}
