@@ -16,3 +16,10 @@ Result<U, E> map<T, U, E>(Result<T, E> result, U Function(T) f) {
     Err(error: E error) => Err(error)
   };
 }
+
+U mapOr<T, U, E>(Result<T, E> result, U fallback, U Function(T) f) {
+  return switch (result) {
+    Ok(value: T value) => f(value),
+    Err(error: E _) => fallback,
+  };
+}
