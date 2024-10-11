@@ -23,3 +23,10 @@ U mapOr<T, U, E>(Result<T, E> result, U fallback, U Function(T) f) {
     Err(error: E _) => fallback,
   };
 }
+
+U mapOrElse<T, U, E>(Result<T, E> result, U Function(E) g, U Function(T) f) {
+  return switch (result) {
+    Ok(value: T value) => f(value),
+    Err(error: E error) => g(error),
+  };
+}
