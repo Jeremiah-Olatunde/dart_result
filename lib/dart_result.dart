@@ -61,3 +61,10 @@ Result<T, E> inspectErr<T, E>(Result<T, E> result, Function(E) f) {
 
   return result;
 }
+
+Result<T, E> flatten<T, E>(Result<Result<T, E>, E> result) {
+  return switch (result) {
+    Ok(value: Result<T, E> value) => value,
+    Err(error: E error) => Err(error),
+  };
+}
