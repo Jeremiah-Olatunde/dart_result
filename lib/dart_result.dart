@@ -30,3 +30,10 @@ U mapOrElse<T, U, E>(Result<T, E> result, U Function(E) g, U Function(T) f) {
     Err(error: E error) => g(error),
   };
 }
+
+Result<T, F> mapErr<T, F, E>(Result<T, E> result, F Function(E) f) {
+  return switch (result) {
+    Ok(value: T value) => Ok(value),
+    Err(error: E error) => Err(f(error)),
+  };
+}
