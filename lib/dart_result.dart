@@ -93,3 +93,10 @@ T expect<T, E>(Result<T, E> result, String message){
     Err(error: E error) => throw '$message: $error',
   };
 }
+
+T unwrap<T, E>(Result<T, E> result){
+  return switch(result){
+    Ok(value: T value) => value,
+    Err(error: E error) => throw 'unwrapped Err: $error',
+  };
+}
