@@ -3,11 +3,17 @@ sealed class Result<T, E> {}
 class Ok<T, E> implements Result<T, E> {
   final T value;
   const Ok(this.value);
+
+  @override
+  String toString() => 'Ok($value)';
 }
 
 class Err<T, E> implements Result<T, E> {
   final E error;
   const Err(this.error);
+
+  @override
+  String toString() => 'Err($error)';  
 }
 
 Result<U, E> map<T, U, E>(Result<T, E> result, U Function(T) f) {
