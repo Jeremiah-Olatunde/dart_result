@@ -86,3 +86,10 @@ bool isErr<T, E>(Result<T, E> result) {
     Err(error: _) => true,
   };
 }
+
+T expect<T, E>(Result<T, E> result, String message){
+  return switch(result){
+    Ok(value: T value) => value,
+    Err(error: E error) => throw '$message: $error',
+  };
+}
